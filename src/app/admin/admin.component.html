@@ -1,0 +1,75 @@
+
+<section class="admin_page">
+    <div class="container">
+        <div class="header-container">
+            <div class="titlebox">
+                <h3>Handset Bulk Blocking Tool</h3>
+            </div>
+        </div>
+        <div class="body_container">
+            <form [formGroup]="blockunblockForm" (ngSubmit)="onSubmit()">   
+                <div class="radio_box">
+                    <label>
+                    <input type="radio" value="Block" formControlName="blocktype" name="blocktype"
+                     (change)="changeAction($event)">
+                        <span>Block</span>
+                    </label>
+                    <label>
+                    <input type="radio" value="Unblock" formControlName="blocktype" name="blocktype" (change)="changeAction($event)">
+                        <span>Unblock</span>
+                    </label>
+                </div>
+            <div class="form-group" *ngIf="showBlock">
+                <label>Select a Reason Code</label>
+                <select class="form-control" 
+                    formControlName="blockreason">
+                    <option *ngFor="let account of blockreason" [ngValue]="account.type">
+                        {{account.name}}
+                    </option>
+                </select>
+               
+            </div>
+            <div class="form-group" *ngIf="!showBlock">
+                <label>Select a Reason Code</label>
+                <select class="form-control" 
+                    formControlName="blockreason">
+                    <option *ngFor="let account of unblockreason" [ngValue]="account.type">
+                        {{account.name}}
+                    </option>
+                </select>
+               
+            </div>
+            <div>
+                <p>Enter a list of IMEIs to be changed here.The list can be separated on new lines
+                    by tabs or by commas.
+                </p>
+            </div>
+            <div>
+                <textarea class="form-control" formControlName="description">
+                    </textarea>
+            </div>
+            <div>
+                <button>Submit</button>
+            </div>
+             </form>
+             
+        </div>
+        <div class="block_user">
+        <table class="table table-striped" *ngIf="show_table">
+            <thead>
+              <tr>
+                <th scope="col">IMEI</th>
+                <th scope="col">Message</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of appendArray;let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{data.description}}</td>
+                
+              </tr>
+            </tbody>
+          </table>
+          </div>
+    </div>
+</section>

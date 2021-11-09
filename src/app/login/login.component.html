@@ -1,0 +1,37 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<div class="login_form">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="imgcontainer">
+      <img src="assets/images/avatar.png" alt="Avatar" class="avatar">
+    </div>
+  
+    <div class="container">
+        <div>
+      <label for="uname"><b>Email</b></label>
+      <input type="text" class="form-control" formControlName="email"
+      [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+      </div>
+      </div>
+      <div>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" class="form-control" formControlName="password"
+      [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+/>
+  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+      <div *ngIf="f.password.errors.required">Password is required</div>
+      <div *ngIf="f.password.errors.minlength">Password must be at least 8
+          characters
+      </div>
+      <div *ngIf="f.password.errors.maxlength">Password must be max 20 characters
+      </div>
+      <div *ngIf="f.password.errors.pattern">Password must contain lowercase,uppercase,special character and 8 length.</div>
+  </div>
+  </div>
+      <button>Login</button>
+    </div>
+   
+  </form>
+ </div>
